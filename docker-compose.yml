@@ -1,16 +1,8 @@
-version: '3.8'
-
 services:
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    environment:
-      - DATABASE_HOST=postgres_db
-      - DATABASE_PORT=5432
-      - DATABASE_USER=master
-      - DATABASE_PASSWORD=master
-      - DATABASE_NAME=master
     ports:
       - '5000:5000'  # Expose backend on localhost:5000
     depends_on:
@@ -20,8 +12,6 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    environment:
-      - VITE_API_URL=http://backend:5000/api  # Direct connection to backend API
     ports:
       - '80:80'  # Expose frontend on localhost:80
     depends_on:
