@@ -7,6 +7,7 @@ export const SuccessMessages = {
     UPDATED: 'User updated successfully',
     DELETED: 'User deleted successfully',
     FETCHED: 'User fetched successfully',
+    MANY_FETCHED: 'Users fetched successfully',
   },
   auth: {
     LOGGED_IN: 'User logged in successfully',

@@ -8,6 +8,8 @@ import { QueryParamDto } from 'src/dtos/query-param.dto';
 import { ILike } from 'typeorm';
 import { ApiBearerAuth } from '@nestjs/swagger';
 import { SuccessMessages } from 'src/constant/successMessages';
+import { User } from 'src/decorators/user/user.decorator';
+import { UserEntity } from './entities/user.entity';
 
 @Controller('users')
 export class UsersController {
@@ -30,7 +32,16 @@ export class UsersController {
 
     return {
       data,
-      message: SuccessMessages.user.FETCHED,
+      message: SuccessMessages.user.MANY_FETCHED,
+    }
+  }
+
+  @ApiBearerAuth()
+  @Get('me')
+  searchUsers(@User() user: UserEntity) {
+    return {
+      data: user,
+      message: SuccessMessages.user.FETCHED
     }
   }
 }

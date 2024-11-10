@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
+import { BadRequestException, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Env } from './config/env.config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -19,8 +19,15 @@ async function bootstrap() {
   });
 
   app.useGlobalPipes(new ValidationPipe({
+    stopAtFirstError: true,
     forbidNonWhitelisted: true,
-    transform: true
+    transform: true,
+    exceptionFactory: (errors) => {
+      errors.forEach((error) => {
+        const message = Object.values(error.constraints)[0];
+        throw new BadRequestException(message);
+      })
+    },
   }));
 
   const config = new DocumentBuilder()

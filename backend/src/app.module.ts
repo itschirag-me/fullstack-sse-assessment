@@ -6,7 +6,6 @@ import { UsersModule } from './users/users.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Env, validationSchema } from './config/env.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from './users/entities/user.entity';
 import { JwtModule } from '@nestjs/jwt';
 import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { AuthGuard } from './guards/auth/auth.guard';
@@ -55,6 +54,7 @@ import { HttpExceptionFilter } from './filters/http-exception/http-exception.fil
   controllers: [AppController],
   providers: [
     AppService,
+
     {
       provide: APP_GUARD,
       useClass: AuthGuard,

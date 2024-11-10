@@ -4,6 +4,7 @@ import {
   ExceptionFilter,
   HttpException,
   HttpStatus,
+  LoggerService,
 } from '@nestjs/common';
 import { ErrorMessages } from 'src/constant/errorMessages';
 
