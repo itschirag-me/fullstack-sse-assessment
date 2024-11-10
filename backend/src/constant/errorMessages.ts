@@ -6,6 +6,8 @@ export const ErrorMessages = {
     PASSWORD_LENGTH: 'Password should be at least 8 characters long',
     PASSWORD_MATCH: "Passwords don't match",
     IS_STRONG_PASSWORD: 'Password is too weak',
+    IS_NUMBER_STRING: 'Value should be a number',
+    IS_STRING: 'Value should be a string',
   },
   http: {
     NOT_FOUND: 'Not found',
@@ -15,8 +17,8 @@ export const ErrorMessages = {
     INTERNAL_SERVER_ERROR: 'Internal server error',
   },
   jwt: {
-    EXPIRED: 'JWT expired',
-    INVALID: 'Invalid JWT',
+    NO_AUTHENTICATION: 'No authentication provided',
+    INVALID: 'Invalid Session',
   },
   user: {
     ALREADY_EXISTS: 'User with this email already exists',

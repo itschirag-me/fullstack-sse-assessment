@@ -1,5 +1,7 @@
 import {
+  DeepPartial,
   DeleteResult,
+  FindManyOptions,
   FindOneOptions,
   ObjectId,
   Repository,
@@ -21,7 +23,7 @@ export abstract class BaseService<E> {
    *
    * @param repository - A TypeORM repository used to perform CRUD operations on the entity.
    */
-  constructor(repository: Repository<E>) { }
+  constructor(private readonly repository: Repository<E>) { }
 
   /**
    * Retrieves all entities of type E from the database.
@@ -30,6 +32,16 @@ export abstract class BaseService<E> {
    */
   findAll(): Promise<E[]> {
     return this.repository.find();
+  }
+
+  /**
+   * Find entities based on the provided options.
+   * 
+   * @param options FindManyOptions
+   * @returns {Promise<E[]>}
+   */
+  find(options: FindManyOptions<E>): Promise<E[]> {
+    return this.repository.find(options);
   }
 
   /**
@@ -48,8 +60,9 @@ export abstract class BaseService<E> {
    * @param entity - The entity object to be saved in the database.
    * @returns A promise that resolves with the created entity after it has been saved in the database.
    */
-  create(entity: E): Promise<E> {
-    return this.repository.save(entity);
+  create(payload: DeepPartial<E>): Promise<E> {
+    const newEntity = this.repository.create(payload);
+    return this.repository.save(newEntity);
   }
 
   /**

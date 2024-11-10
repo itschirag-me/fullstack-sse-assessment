@@ -1,11 +1,10 @@
-import { Expose } from 'class-transformer';
-import { BeforeInsert, Column, Index, PrimaryGeneratedColumn } from 'typeorm';
-import * as bcrypt from 'bcrypt';
+import { Exclude, Expose } from 'class-transformer';
+import { BeforeInsert, Column, Entity, Index } from 'typeorm';
+import * as bcrypt from 'bcryptjs';
+import { BaseEntity } from 'src/entities/base.entity';
 
-export class UserEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+@Entity('users')
+export class UserEntity extends BaseEntity {
   @Column({ type: 'varchar', length: 255 })
   name: string;
 
@@ -13,7 +12,7 @@ export class UserEntity {
   @Index({ unique: true })
   email: string;
 
-  @Expose({ toClassOnly: true })
+  @Exclude({ toPlainOnly: true })
   @Column({ type: 'varchar', length: 255 })
   password: string;
 
@@ -24,5 +23,9 @@ export class UserEntity {
   hashPassword() {
     const salt = bcrypt.genSaltSync(10);
     this.password = bcrypt.hashSync(this.password, salt);
+  }
+
+  comparePassword(password: string): Promise<boolean> {
+    return bcrypt.compare(password, this.password);
   }
 }
