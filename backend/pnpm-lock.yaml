@@ -44,6 +44,9 @@ importers:
       compression:
         specifier: ^1.7.5
         version: 1.7.5
+      express:
+        specifier: ^4.21.1
+        version: 4.21.1
       joi:
         specifier: ^17.13.3
         version: 17.13.3

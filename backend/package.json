@@ -33,6 +33,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "compression": "^1.7.5",
+    "express": "^4.21.1",
     "joi": "^17.13.3",
     "passport-jwt": "^4.0.1",
     "pg": "^8.13.1",

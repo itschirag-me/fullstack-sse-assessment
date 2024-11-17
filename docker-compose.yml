@@ -20,9 +20,9 @@ services:
   postgres_db:
     image: postgres:latest
     environment:
-      POSTGRES_USER: # Enter your desired username
-      POSTGRES_PASSWORD: # Enter your desired password
-      POSTGRES_DB: # Enter your desired database name
+      POSTGRES_USER: master # Enter your desired username
+      POSTGRES_PASSWORD: master # Enter your desired password
+      POSTGRES_DB: master # Enter your desired database name
     ports:
       - '5432:5432'  # Expose Postgres on localhost:5432
     volumes:

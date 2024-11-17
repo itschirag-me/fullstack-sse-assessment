@@ -6,6 +6,7 @@ WORKDIR /app
 
 # Install pnpm and dependencies
 RUN npm install -g pnpm
+RUN npm install -g @nestjs/cli
 
 COPY package.json pnpm-lock.yaml ./
 
